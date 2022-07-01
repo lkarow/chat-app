@@ -29,7 +29,7 @@ export default class Chat extends React.Component {
         },
         {
           _id: 2,
-          text: 'This is a system message',
+          text: `${name} has entered the chat`,
           createdAt: new Date(),
           system: true,
         },
@@ -37,7 +37,7 @@ export default class Chat extends React.Component {
     });
   }
 
-  // Add message to the messages state
+  // Add message to the state
   onSend(messages = []) {
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
@@ -51,10 +51,10 @@ export default class Chat extends React.Component {
         {...props}
         wrapperStyle={{
           left: {
-            backgroundColor: '#a1f7ff',
+            backgroundColor: '#fafafa',
           },
           right: {
-            backgroundColor: '#00cde0',
+            backgroundColor: '#2d7ecf',
           },
         }}
       />
@@ -63,6 +63,10 @@ export default class Chat extends React.Component {
 
   render() {
     let { color } = this.props.route.params;
+    // Set default background color if no color was selected
+    if (color === '') {
+      color = '#8A95A5';
+    }
 
     return (
       <View style={[{ backgroundColor: color }, { flex: 1 }]}>
