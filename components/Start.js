@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   View,
@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import BackgroundImage from '../assets/bgimg.png';
 
+// Background color selection colors
 const colors = {
   black: '#090C08',
   purple: '#474056',
@@ -17,64 +18,71 @@ const colors = {
   green: '#B9C6AE',
 };
 
-export default function Start(props) {
-  const [name, setName] = useState('');
-  const [color, setColor] = useState('');
+export default class Start extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { name: '', color: '' };
+  }
 
-  return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={BackgroundImage}
-        resizeMode="cover"
-        style={styles.bgImage}
-      >
-        <View style={styles.containerTitle}>
-          <Text style={styles.title}>Talk</Text>
-        </View>
-        <View style={styles.loginContainer}>
-          <TextInput
-            style={styles.input}
-            onChangeText={(name) => setName(name)}
-            value={name}
-            placeholder="Your name"
-          />
-          <View style={styles.colorBox}>
-            <Text style={styles.colorBoxText}>Choose Background Color:</Text>
-            <View style={styles.colorChoice}>
-              <TouchableOpacity
-                onPress={() => setColor(colors.black)}
-                style={styles.color1}
-              ></TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setColor(colors.purple)}
-                style={styles.color2}
-              ></TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setColor(colors.grey)}
-                style={styles.color3}
-              ></TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => setColor(colors.green)}
-                style={styles.color4}
-              ></TouchableOpacity>
-            </View>
+  render() {
+    return (
+      <View style={styles.container}>
+        <ImageBackground
+          source={BackgroundImage}
+          resizeMode="cover"
+          style={styles.bgImage}
+        >
+          <View style={styles.containerTitle}>
+            <Text style={styles.title}>Talk</Text>
           </View>
-          <Pressable
-            onPress={() => {
-              // Set default background color if no color was selected
-              if (color === '') {
-                setColor(colors.green);
-              }
-              props.navigation.navigate('Chat', { name: name, color: color });
-            }}
-            style={styles.btnStart}
-          >
-            <Text style={styles.btnStartText}>Start Chatting</Text>
-          </Pressable>
-        </View>
-      </ImageBackground>
-    </View>
-  );
+          <View style={styles.loginContainer}>
+            <TextInput
+              style={styles.input}
+              onChangeText={(name) => this.setState({ name })}
+              value={this.state.name}
+              placeholder="Your name"
+            />
+            <View style={styles.colorBox}>
+              <Text style={styles.colorBoxText}>Choose Background Color:</Text>
+              <View style={styles.colorChoice}>
+                <TouchableOpacity
+                  onPress={() => this.setState({ color: colors.black })}
+                  style={styles.color1}
+                ></TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.setState({ color: colors.purple })}
+                  style={styles.color2}
+                ></TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.setState({ color: colors.grey })}
+                  style={styles.color3}
+                ></TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => this.setState({ color: colors.green })}
+                  style={styles.color4}
+                ></TouchableOpacity>
+              </View>
+            </View>
+            <Pressable
+              onPress={() => {
+                // Set default background color if no color was selected
+                if (this.state.color === '') {
+                  this.setState({ color: colors.green });
+                }
+                this.props.navigation.navigate('Chat', {
+                  name: this.state.name,
+                  color: this.state.color,
+                });
+              }}
+              style={styles.btnStart}
+            >
+              <Text style={styles.btnStartText}>Start Chatting</Text>
+            </Pressable>
+          </View>
+        </ImageBackground>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
