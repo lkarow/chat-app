@@ -37,6 +37,8 @@ export default class Start extends React.Component {
           </View>
           <View style={styles.loginContainer}>
             <TextInput
+              accessibilityLabel="Text field to enter your name"
+              accessibilityHint="Name will be used as your alias in chat"
               style={styles.input}
               onChangeText={(name) => this.setState({ name })}
               value={this.state.name}
@@ -46,29 +48,45 @@ export default class Start extends React.Component {
               <Text style={styles.colorBoxText}>Choose Background Color:</Text>
               <View style={styles.colorChoice}>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="Black circle"
+                  accessibilityHint="Select black as background color for the chat"
+                  accessibilityRole="button"
                   onPress={() => this.setState({ color: colors.black })}
                   style={styles.color1}
                 ></TouchableOpacity>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="Purple circle"
+                  accessibilityHint="Select black as background color for the chat"
+                  accessibilityRole="button"
                   onPress={() => this.setState({ color: colors.purple })}
                   style={styles.color2}
                 ></TouchableOpacity>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="gray-blue circle"
+                  accessibilityHint="Select black as background color for the chat"
+                  accessibilityRole="button"
                   onPress={() => this.setState({ color: colors.grey })}
                   style={styles.color3}
                 ></TouchableOpacity>
                 <TouchableOpacity
+                  accessible={true}
+                  accessibilityLabel="Green circle"
+                  accessibilityHint="Select black as background color for the chat"
+                  accessibilityRole="button"
                   onPress={() => this.setState({ color: colors.green })}
                   style={styles.color4}
                 ></TouchableOpacity>
               </View>
             </View>
             <Pressable
+              accessible={true}
+              accessibilityLabel="Button to start chatting"
+              accessibilityHint="Start chatting"
+              accessibilityRole="button"
               onPress={() => {
-                // Set default background color if no color was selected
-                if (this.state.color === '') {
-                  this.setState({ color: colors.green });
-                }
                 this.props.navigation.navigate('Chat', {
                   name: this.state.name,
                   color: this.state.color,
