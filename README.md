@@ -4,6 +4,8 @@
 
 A mobile chat app built with React Native and developed with Expo. It is optimized for iOS and Android. Users can authenticate anonymously using Google Firebase authentication. Google Firestore Database is used to set up a real-time database. Messages are also stored locally on the user's mobile device via Async Storage, allowing users to access their messages offline. Users can send messages and share images and their locations.
 
+<img src="./public/preview-chat-app.jpg" width=50% height=50%>
+
 ### User Stories
 
 - As a new user, I want to be able to easily enter a chat room so I can quickly start talking to my friends and family.
