@@ -43,7 +43,10 @@ class CustomAction extends React.Component {
       if (status === 'granted') {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: 'Images',
-        }).catch((error) => console.log(error));
+        }).catch((error) => {
+          console.log(error);
+          Alert(error.message || 'An error has occurred!');
+        });
 
         if (!result.cancelled) {
           const imageUrl = await this.uploadImageFetch(result.uri);
@@ -52,6 +55,7 @@ class CustomAction extends React.Component {
       }
     } catch (error) {
       console.log(error.message);
+      Alert(error.message || 'An error has occurred!');
     }
   };
 
@@ -62,7 +66,10 @@ class CustomAction extends React.Component {
       if (status === 'granted') {
         let result = await ImagePicker.launchCameraAsync({
           mediaTypes: 'Images',
-        }).catch((error) => console.log(error));
+        }).catch((error) => {
+          console.log(error);
+          Alert(error.message || 'An error has occurred!');
+        });
 
         if (!result.cancelled) {
           const imageUrl = await this.uploadImageFetch(result.uri);
@@ -71,6 +78,7 @@ class CustomAction extends React.Component {
       }
     } catch (error) {
       console.log(error.message);
+      Alert(error.message || 'An error has occurred!');
     }
   };
 
@@ -92,6 +100,7 @@ class CustomAction extends React.Component {
       }
     } catch (error) {
       console.log(error.message);
+      Alert(error.message || 'An error has occurred!');
     }
   };
 
