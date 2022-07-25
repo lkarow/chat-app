@@ -86,12 +86,12 @@ export default class Start extends React.Component {
               accessibilityLabel="Button to start chatting"
               accessibilityHint="Start chatting"
               accessibilityRole="button"
-              onPress={() => {
+              onPress={() =>
                 this.props.navigation.navigate('Chat', {
                   name: this.state.name,
                   color: this.state.color,
-                });
-              }}
+                })
+              }
               style={styles.btnStart}
             >
               <Text style={styles.btnStartText}>Start Chatting</Text>
